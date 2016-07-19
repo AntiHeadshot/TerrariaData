@@ -84,27 +84,18 @@
         {{selected | json}}
     </div>
     <div class="maindummy">&nbsp;</div>
-    <div class="itemcontainer">
-        <input ng-model="filter.name" />
-        <ul>
-            <li ng-repeat="obj in objects | filter : filter.name | orderBy : 'name' | limitTo : 200 : 0" class="object floating" ng-click="$parent.selected = obj">
-                <span class="name" ng-bind="obj.name"></span>
-                <img ng-src="{{obj.img}}" />
-            </li>
-        </ul>
+    <div class="rightcontainer">
+        <div class="filtercontainer">
+            <input ng-model="filter.name" />
+        </div>
+        <div class="itemcontainer">
+            <ul>
+                <li ng-repeat="obj in objects | filter : filter.name | orderBy : 'name' | limitTo : 200 : 0" class="object floating" ng-click="$parent.selected = obj">
+                    <span class="name" ng-bind="obj.name"></span>
+                    <img ng-src="{{obj.img}}" />
+                </li>
+            </ul>
+        </div>
     </div>
-
-    <table style="display:inline; line-height:15px; background-color:inherit; vertical-align:middle; overflow: scroll;">
-        <tr>
-            <td style="border-bottom:0; border-top:0; margin:0; padding:0; vertical-align:middle;"><a href="/Bone" title="Bone"><img alt="Bone.png" src="https://hydra-media.cursecdn.com/terraria.gamepedia.com/2/2c/Bone.png?version=0245d6d1ac83fb15a11f569923f9c26c" width="16" height="16"></a></td>
-            <td style="border-bottom:0; border-top:0; vertical-align:middle;padding-left:5px">
-                <a href="/Bone" title="Bone"> Bone</a> <br><span class="dropSub" style="font-size:90%">
-                    • 1-3 / <b>
-                        <abbr style="color:#663300; cursor:pointer;" title="Expert Mode">2-6</abbr>
-                    </b>
-                </span>
-            </td>
-        </tr>
-    </table>
 </body>
 </html>
