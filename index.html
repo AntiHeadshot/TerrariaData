@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.angularjs.org/1.2.7/angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="money.js"></script>
+
+</head>
+<body ng-app="terraria" ng-controller="terrariacontroller">
+    <div class="mainobject object">
+        <span class="name" ng-bind="selected.name"></span>
+        <img ng-src="{{selected.img}}" />
+
+        <div ng-if="selected.type">
+            <span class="description">Type: </span>
+            <span class="type" ng-bind="selected.type"></span>
+        </div>
+
+        <div ng-if="selected.sell&&selected.buy">
+            Sell/Buy: <money ng-model="selected.sell"></money>/<money ng-model="selected.buy"></money>
+        </div>
+        <div ng-if="selected.sell&&!selected.buy">
+            Sell: <money ng-model="selected.sell"></money>
+        </div>
+        <div ng-if="!selected.sell&&selected.buy">
+            Buy: <money ng-model="selected.buy"></money>
+        </div>
+
+        <div ng-if="selected.rarity.length">
+            <span class="description">Rarity: </span>
+            <img ng-if="selected.rarity !== undefined" class="rarity" ng-src="{{rarity[selected.rarity]}}" />
+        </div>
+
+        <div ng-if="selected.tooltip.length">
+            <span class="description">Tooltip: </span>
+            <span class="text" ng-bind="selected.tooltip" />
+        </div>
+
+        <div ng-if="selected.drops.length">
+            <span class="description">Drops: </span>
+            <table>
+                <tr class="drop" ng-repeat="drop in selected.drops">
+                    <td><img ng-src="{{objects[drop.dropId].img}}" /></td>
+                    <td><span ng-bind="drop.name"></span></td>
+                    <td> x <span ng-bind="drop.amount"></span></td>
+                    <td> (<span ng-bind="drop.rate"></span>)</td>
+                </tr>
+            </table>
+            <span class="text" ng-bind="selected.tooltip" />
+        </div>
+
+        <div ng-if="selected.reciepts.length">
+            <span class="description">Receipt: </span>
+            <table>
+                <tr class="drop" ng-repeat="reciept in selected.reciepts">
+                    <td><span ng-bind="reciept.station"></span></td>
+                    <td>
+                        <table>
+                            <tr ng-repeat="ingredient in reciept.ingredients">
+                                <td><img ng-src="{{objects[ingredient.itemID].img}}" /></td>
+                                <td> x <span ng-bind="ingredient.ammount"></span></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <span class="text" ng-bind="selected.tooltip" />
+        </div>
+
+        {{selected | json}}
+    </div>
+    <div class="maindummy">&nbsp;</div>
+    <div class="itemcontainer">
+        <input ng-model="filter.name" />
+        <ul>
+            <li ng-repeat="obj in objects | filter : filter.name | orderBy : 'name' | limitTo : 200 : 0" class="object floating" ng-click="$parent.selected = obj">
+                <span class="name" ng-bind="obj.name"></span>
+                <img ng-src="{{obj.img}}" />
+            </li>
+        </ul>
+    </div>
+
+    <table style="display:inline; line-height:15px; background-color:inherit; vertical-align:middle; overflow: scroll;">
+        <tr>
+            <td style="border-bottom:0; border-top:0; margin:0; padding:0; vertical-align:middle;"><a href="/Bone" title="Bone"><img alt="Bone.png" src="https://hydra-media.cursecdn.com/terraria.gamepedia.com/2/2c/Bone.png?version=0245d6d1ac83fb15a11f569923f9c26c" width="16" height="16"></a></td>
+            <td style="border-bottom:0; border-top:0; vertical-align:middle;padding-left:5px">
+                <a href="/Bone" title="Bone"> Bone</a> <br><span class="dropSub" style="font-size:90%">
+                    • 1-3 / <b>
+                        <abbr style="color:#663300; cursor:pointer;" title="Expert Mode">2-6</abbr>
+                    </b>
+                </span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,96 @@
+/* Styles go here */
+html, body {
+    font-family: 'Segoe UI';
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+input {
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    box-shadow: 0 0 4px black;
+    margin: 4px;
+    margin-left: 8px;
+}
+
+.object {
+    border: 1px solid gray;
+    border-radius: 4px;
+    box-shadow: 0 0 4px black;
+    margin: 4px;
+}
+
+    .object.floating {
+        position: relative;
+        display: inline-block;
+    }
+
+    .object  .name {
+        font-weight: bold;
+        display: block;
+        margin: 0 4px 0 4px;
+    }
+
+    .object  .type {
+        font-weight: 600;
+        margin: 0 4px 0 4px;
+    }
+
+
+    .object  .rarity {
+        font-weight: 600;
+        margin: 0 4px 0 4px;
+    }
+
+    .object  .description {
+        content: 'Rarity: ';
+        font-weight: 400;
+        margin: 0 4px 0 4px;
+        break-after: always;
+    }
+
+    .object > img {
+        height: auto;
+        width: auto;
+        max-width: 100px;
+        max-height: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 4px;
+    }
+
+    .object money {
+        display: inline-block;
+    }
+
+    .drop > img {
+        height: auto;
+        width: auto;
+        max-width: 50px;
+        max-height: 50px;
+        display: block;
+    }
+
+.mainobject {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+}
+
+.maindummy {
+    width: 300px;
+    height: 100%;
+    float: left;
+}
+
+.itemcontainer {
+    width: auto;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
