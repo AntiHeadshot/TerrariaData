@@ -47,7 +47,6 @@ input {
     }
 
     .object  .description {
-        content: 'Rarity: ';
         font-weight: 400;
         margin: 0 4px 0 4px;
         break-after: always;
@@ -68,7 +67,7 @@ input {
         display: inline-block;
     }
 
-    .drop > img {
+    .drop img,.reciept img {
         height: auto;
         width: auto;
         max-width: 50px;

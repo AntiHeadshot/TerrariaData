@@ -53,26 +53,27 @@ app.controller('terrariacontroller', function ($scope) {
               obj.reciepts = [];
               obj.ingredientFor = [];
           });
-      },
-      function (xhr) {
-          console.error(xhr);
-      }
+
+          loadJSON('reciept.json',
+            function (data) {
+                data.forEach(function (obj) {
+                    $scope.reciepts.push(obj);
+                });
+
+                $scope.reciepts.forEach(function (obj) {
+                    if (obj.result.itemID >= 0)
+                        $scope.objects[obj.result.itemID].reciepts.push(obj);
+                    obj.ingredients.forEach(function (ingr) {
+                        $scope.objects[ingr.itemID].ingredientFor.push({ 'reciept':obj,'ammount': ingr.ammount });
+                    });
+                });
+
+                $scope.$apply();
+            },
+            function (xhr) {
+                console.error(xhr);
+            }
     );
-    loadJSON('reciept.json',
-      function (data) {
-          data.forEach(function (obj) {
-              $scope.reciepts.push(obj);
-          });
-
-          $scope.reciepts.forEach(function (obj) {
-              if (obj.result.itemID >= 0)
-                  $scope.objects[obj.result.itemID].reciepts.push(obj);
-              obj.ingredients.forEach(function(ingr) {
-                  $scope.objects[ingr.itemID].ingredientFor.push(obj);
-              });
-          });
-
-          $scope.$apply();
       },
       function (xhr) {
           console.error(xhr);
