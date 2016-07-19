@@ -14,8 +14,25 @@ input {
     border: 1px solid gray;
     box-shadow: 0 0 4px black;
     margin: 4px;
-    margin-left: 8px;
-    position: fixed;
+}
+
+.itemWithCount > *{
+    display:inline-block;
+}
+.itemWithCount > img{
+    page-break-after:avoid;
+}
+
+.ammount {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    line-height: 10px;
+    min-width: 10px;
+    font-size: 11px;
+    text-align: center;
+    padding: 3px;
+    margin: 0 2px 0 -10px;
 }
 
 .object {
@@ -23,87 +40,117 @@ input {
     border-radius: 4px;
     box-shadow: 0 0 4px black;
     margin: 4px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
 }
 
-    .object.floating {
-        position: relative;
-        display: inline-block;
-    }
-
-    .object  .name {
+    .object .name {
         font-weight: bold;
         display: block;
         margin: 0 4px 0 4px;
     }
 
-    .object  .type {
+    .object .type {
         font-weight: 600;
         margin: 0 4px 0 4px;
     }
 
 
-    .object  .rarity {
+    .object .rarity {
         font-weight: 600;
         margin: 0 4px 0 4px;
     }
 
-    .object  .description {
+    .object .description {
         font-weight: 400;
         margin: 0 4px 0 4px;
         break-after: always;
     }
 
-    .object > img {
-        height: auto;
-        width: auto;
-        max-width: 100px;
-        max-height: 100px;
+    .object > .img {
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 4px;
+        margin: auto;
+    }
+
+    .object>.img>img{
+        max-height: 100px;
+        object-fit: contain;
     }
 
     .object money {
         display: inline-block;
     }
 
-    .drop img,.reciept img {
-        height: auto;
-        width: auto;
-        max-width: 50px;
-        max-height: 50px;
-        display: block;
-    }
-
-.mainobject {
-    position: fixed;
-    width: 300px;
-    height: 100%;
+.drop img, .reciept img {
+    height: auto;
+    width: auto;
+    max-width: 50px;
+    max-height: 50px;
+    display: inline-block;
 }
 
-.maindummy {
-    width: 300px;
+.mainobject {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: relative;
+}
+
+.leftcontainer {
+    max-width: 300px;
+    min-width: 300px;
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     float: left;
 }
 
 .rightcontainer {
     width: auto;
     height: 100%;
-    margin: 12px 0 0 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .filtercontainer {
     width: 100%;
-    height: 50px;
-    margin: 12px 0 0 0;
+    margin-bottom: -10px;
 }
 
+    .filtercontainer::after {
+        content: ' ';
+        display: block;
+        position: relative;
+        width: 100%;
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0) 100%);
+        height: 20px;
+        z-index: 100;
+    }
+
 .itemcontainer {
-    width: 100%;
-    height: auto;
-    margin: 12px 0 0 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: flex-start;
+    overflow-y: auto;
+    min-height: 0px;
+    padding-left: 4px;
 }
+
+    .itemcontainer > * {
+        border: 1px solid black;
+        margin: 4px 4px 0 0;
+        min-height: 40px;
+        flex: 0 1 auto;
+        /*magic*/
+    }

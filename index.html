@@ -2,99 +2,114 @@
 <html>
 <head>
     <script src="http://code.angularjs.org/1.2.7/angular.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script src="money.js"></script>
 
 </head>
 <body ng-app="terraria" ng-controller="terrariacontroller">
-    <div class="mainobject object">
-        <span class="name" ng-bind="selected.name"></span>
-        <img ng-src="{{selected.img}}" />
+    <div class="leftcontainer">
+        <div ng-if="selected" class="mainobject object">
+            <span class="name" ng-bind="selected.name"></span>
+            <img ng-src="{{selected.img}}" />
 
-        <div ng-if="selected.type">
-            <span class="description">Type: </span>
-            <span class="type" ng-bind="selected.type"></span>
-        </div>
+            <div ng-if="selected.type">
+                <span class="description">Type: </span>
+                <span class="type" ng-bind="selected.type"></span>
+            </div>
 
-        <div ng-if="selected.sell&&selected.buy">
-            Sell/Buy: <money ng-model="selected.sell"></money>/<money ng-model="selected.buy"></money>
-        </div>
-        <div ng-if="selected.sell&&!selected.buy">
-            Sell: <money ng-model="selected.sell"></money>
-        </div>
-        <div ng-if="!selected.sell&&selected.buy">
-            Buy: <money ng-model="selected.buy"></money>
-        </div>
+            <div ng-if="selected.sell&&selected.buy">
+                Sell/Buy: <money ng-model="selected.sell"></money>/<money ng-model="selected.buy"></money>
+            </div>
+            <div ng-if="selected.sell&&!selected.buy">
+                Sell: <money ng-model="selected.sell"></money>
+            </div>
+            <div ng-if="!selected.sell&&selected.buy">
+                Buy: <money ng-model="selected.buy"></money>
+            </div>
 
-        <div ng-if="selected.rarity.length">
-            <span class="description">Rarity: </span>
-            <img ng-if="selected.rarity !== undefined" class="rarity" ng-src="{{rarity[selected.rarity]}}" />
-        </div>
+            <div ng-if="selected.rarity.length">
+                <span class="description">Rarity: </span>
+                <img ng-if="selected.rarity !== undefined" class="rarity" ng-src="{{rarity[selected.rarity]}}" />
+            </div>
 
-        <div ng-if="selected.tooltip.length">
-            <span class="description">Tooltip: </span>
-            <span class="text" ng-bind="selected.tooltip" />
-        </div>
+            <div ng-if="selected.tooltip.length">
+                <span class="description">Tooltip: </span>
+                <span class="text" ng-bind="selected.tooltip" />
+            </div>
 
-        <div ng-if="selected.drops.length">
-            <span class="description">Drops: </span>
-            <table>
-                <tr class="drop" ng-repeat="drop in selected.drops">
-                    <td><img ng-src="{{objects[drop.dropId].img}}" /></td>
-                    <td><span ng-bind="drop.name"></span></td>
-                    <td> x <span ng-bind="drop.amount"></span></td>
-                    <td> (<span ng-bind="drop.rate"></span>)</td>
-                </tr>
-            </table>
-        </div>
+            <div ng-if="selected.drops.length">
+                <span class="description">Drops: </span>
+                <table>
+                    <tr class="drop" ng-repeat="drop in selected.drops">
+                        <td class="itemWithCount">
+                            <nobr>
+                                <img ng-src="{{objects[drop.dropId].img}}" title="{{drop.name}}" ng-click="setSelected(objects[drop.dropId])" />
+                                <span class="ammount" ng-bind="drop.amount"></span>
+                            </nobr>
+                        </td>
+                        <td> (<span ng-bind="drop.rate"></span>)</td>
+                    </tr>
+                </table>
+            </div>
 
-        <div ng-if="selected.reciepts.length">
-            <span class="description">Receipt: </span>
-            <table>
-                <tr class="reciept" ng-repeat="reciept in selected.reciepts">
-                    <td><span ng-bind="reciept.station"></span></td>
-                    <td>
-                        <table>
-                            <tr ng-repeat="ingredient in reciept.ingredients">
-                                <td><img ng-src="{{objects[ingredient.itemID].img}}" /></td>
-                                <td> x <span ng-bind="ingredient.ammount"></span></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+            <div ng-if="selected.reciepts.length">
+                <span class="description">Receipt: </span>
+                <table>
+                    <tr class="reciept" ng-repeat="reciept in selected.reciepts">
+                        <td><span ng-bind="reciept.station"></span></td>
+                        <td>
+                            <table>
+                                <tr ng-repeat="ingredient in reciept.ingredients">
+                                    <td class="itemWithCount">
+                                        <nobr>
+                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])"/>
+                                            <span class="ammount" ng-bind="ingredient.ammount"></span>
+                                        </nobr>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-if="selected.ingredientFor.length">
+                <span class="description">is ingredient for: </span>
+                <table>
+                    <tr class="reciept" ng-repeat="reciept in selected.ingredientFor">
+
+                        <td class="itemWithCount">
+                            <nobr>
+                                <img ng-src="{{selected.img}}" />
+                                <span class="ammount" ng-bind="reciept.ammount"></span>
+                                </nobr>
+                        </td>
+                        <td><span ng-bind="reciept.reciept.station"></span></td>
+                        <td class="itemWithCount">
+                            <nobr>
+                                <img ng-src="{{objects[reciept.reciept.result.itemID].img}}" title="{{reciept.reciept.result.item}}" ng-click="setSelected(objects[reciept.reciept.result.itemID])"/>
+                                <span class="ammount" ng-bind="reciept.reciept.result.ammount"></span>
+                            </nobr>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {{selected | json}}
         </div>
-        <div ng-if="selected.ingredientFor.length">
-            <span class="description">is ingredient for: </span>
-            <table>
-                <tr class="reciept" ng-repeat="reciept in selected.ingredientFor">
-                    <td> x <span ng-bind="reciept.ammount"></span></td>
-                    <td><span ng-bind="reciept.reciept.station"></span></td>
-                    <td>
-                        <img ng-src="{{objects[reciept.reciept.result.itemID].img}}" />
-                    </td>
-                    <td>
-                        x <span ng-bind="reciept.reciept.result.ammount"></span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        reciept
-        {{selected | json}}
     </div>
-    <div class="maindummy">&nbsp;</div>
     <div class="rightcontainer">
         <div class="filtercontainer">
             <input ng-model="filter.name" />
         </div>
         <div class="itemcontainer">
-            <ul>
-                <li ng-repeat="obj in objects | filter : filter.name | orderBy : 'name' | limitTo : 200 : 0" class="object floating" ng-click="$parent.selected = obj">
-                    <span class="name" ng-bind="obj.name"></span>
+            <div ng-repeat="obj in objects | filter : filter.name | orderBy : 'name' | limitTo : 200 : 0" class="object" ng-click="$parent.selected = obj;">
+                <span class="name" ng-bind="obj.name"></span>
+                <div class="img">
                     <img ng-src="{{obj.img}}" />
-                </li>
-            </ul>
+                </div>
+            </div>
+            <div ng-repeat="i in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]" style="height:0;opacity:0">&emsp;&emsp;&emsp;</div>
         </div>
     </div>
 </body>

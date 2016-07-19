@@ -6,6 +6,12 @@ var app = angular.module('terraria', []);
 // adding Controller to app
 app.controller('terrariacontroller', function ($scope) {
 
+    $scope.selected = 0;
+
+    $scope.setSelected = function (obj) {
+        $scope.selected = obj;
+    };
+
     $scope.objects = [];
     $scope.reciepts = [];
     $scope.filter = {};
