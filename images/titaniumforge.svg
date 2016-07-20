@@ -1,0 +1,14 @@
+﻿<svg width="48" height="34" viewBox="0 0 48 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+   <clipPath id="diagonal-mask-l">
+      <polygon points="0 0,36 0,12 34,0 34" />
+   </clipPath>
+   <clipPath id="diagonal-mask-r">
+      <polygon points="12 34,48 34,48 0,36 0" />
+   </clipPath>
+  </g>
+  <image clip-path="url(#diagonal-mask-l)" xlink:href="https://hydra-media.cursecdn.com/terraria.gamepedia.com/7/78/Adamantite_Forge.png?version=dbc7efb1181fa1ea48affda2bc5d702c"
+  x="0" y="0" height="34" width="48" />
+  <image clip-path="url(#diagonal-mask-r)" xlink:href="https://hydra-media.cursecdn.com/terraria.gamepedia.com/c/c6/Titanium_Forge.png?version=d1c1353c30e63da49bffafc3a71c25d6"
+  x="0" y="0" height="34" width="48" />
+</svg>

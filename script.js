@@ -62,7 +62,7 @@ app.controller('terrariacontroller', function ($scope) {
     $scope.station["Crystal Ball"] = "";
     $scope.station["Iron Anvil"] = "";
     $scope.station["Placed Bottle"] = "";
-    $scope.station["Titanium Forge"] = "";
+    $scope.station["Titanium Forge"] = "images/titaniumforge.svg";
     $scope.station["Mythril Anvil"] = "";
 
     /*
