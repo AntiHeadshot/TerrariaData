@@ -32,6 +32,71 @@ app.controller('terrariacontroller', function ($scope) {
     $scope.rarity["Rainbow"] = "https://hydra-media.cursecdn.com/terraria.gamepedia.com/a/a5/Rarity_color_rainbow_big.gif";
     $scope.rarity["Quest"] = "https://hydra-media.cursecdn.com/terraria.gamepedia.com/6/66/Rarity_color_quest_big.png";
 
+    $scope.station = {};
+    $scope.station["Ancient Manipulator"] = "";
+    $scope.station["Autohammer"] = "";
+    $scope.station["Blend-O-Matic"] = "";
+    $scope.station["Bone Welder"] = "";
+    $scope.station["Bookcase"] = "";
+    $scope.station["By Hand"] = "";
+    $scope.station["Cooking Pot"] = "";
+    $scope.station["Demon/Crimson Altar"] = "";
+    $scope.station["Dye Vat"] = "";
+    $scope.station["Furnace"] = "";
+    $scope.station["Heavy Work Bench"] = "";
+    $scope.station["Hellforge"] = "";
+    $scope.station["Honey"] = "";
+    $scope.station["Honey Dispenser"] = "";
+    $scope.station["Imbuing Station"] = "";
+    $scope.station["Keg"] = "";
+    $scope.station["Living Loom"] = "";
+    $scope.station["Loom"] = "";
+    $scope.station["Meat Grinder"] = "";
+    $scope.station["Sawmill"] = "";
+    $scope.station["Sky Mill"] = "";
+    $scope.station["Solidifier"] = "";
+    $scope.station["Tinkerer's Workshop"] = "";
+    $scope.station["Water"] = "";
+    $scope.station["Work Bench"] = "";
+    $scope.station["Chair"] = "";
+    $scope.station["Crystal Ball"] = "";
+    $scope.station["Iron Anvil"] = "";
+    $scope.station["Placed Bottle"] = "";
+    $scope.station["Titanium Forge"] = "";
+    $scope.station["Mythril Anvil"] = "";
+
+    /*
+    contains Chair - Chair
+        Chair +  Work Bench
+        Table +  Chair
+        
+    contains Crystal - Crystal Ball
+        Crystal Ball
+        Crystal Ball + Be near honey
+        Crystal Ball +  Lava
+        Crystal Ball +  Water
+        
+    contains Iron - Iron Anvil
+        Iron Anvil / Lead Anvil
+        Iron Anvil or  Lead Anvil
+        Lead Anvil /  Iron Anvil
+        
+    contains Placed - Placed Bottle
+        Placed Bottle
+        Placed  Bottle  <br/> or <br/>  Alchemy  Table
+        
+    contains Titanium - Titanium Forge
+        Titanium Forge /  Adamantite Forge
+        Titanium Forge / Adamantite Forge
+        
+    contains Mythril - Mythril Anvil
+        Mythril Anvil /  Orichalcum Anvil
+        Mythril Anvil Orichalcum Anvil
+        Orichalcum Anvil /  Mythril Anvil
+
+        remoce • everywhere and trim
+    */
+
     function loadJSON(path, success, error) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -73,6 +138,11 @@ app.controller('terrariacontroller', function ($scope) {
                         $scope.objects[ingr.itemID].ingredientFor.push({ 'reciept':obj,'ammount': ingr.ammount });
                     });
                 });
+
+                var distinct = {};
+                $scope.reciepts.forEach(function(obj) { distinct[obj.station] = true; });
+                for(var prop in distinct)
+                    console.log(prop);
 
                 $scope.$apply();
             },

@@ -182,13 +182,21 @@
                 <span class="description">Receipt: </span>
                 <table>
                     <tr class="reciept" ng-repeat="reciept in selected.reciepts">
-                        <td><span ng-bind="reciept.station"></span></td>
+                        <td class="itemWithCount">
+                            <nobr>
+                                <img ng-src="{{selected.img}}" />
+                                <span class="ammount" ng-bind="reciept.result.ammount"></span>
+                            </nobr>
+                        </td>
+                        <td>
+                            <img class="station" ng-src="{{station[reciept.station]}}"/>
+                        </td>
                         <td>
                             <table>
                                 <tr ng-repeat="ingredient in reciept.ingredients">
                                     <td class="itemWithCount">
                                         <nobr>
-                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])" />
+                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])"/>
                                             <span class="ammount" ng-bind="ingredient.ammount"></span>
                                         </nobr>
                                     </td>
