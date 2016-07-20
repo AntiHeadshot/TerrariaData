@@ -6,7 +6,6 @@ html, body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    opacity: 0.3;
 }
 
 input {
@@ -34,6 +33,7 @@ input {
     text-align: center;
     padding: 3px;
     margin: 0 2px 0 -10px;
+    display: inline-block;
 }
 
 .object {

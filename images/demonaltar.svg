@@ -1,0 +1,14 @@
+﻿<svg width="44" height="30" viewBox="0 0 44 30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+   <clipPath id="diagonal-mask-l">
+      <polygon points="0 0,33 0,11 30,0 30" />
+   </clipPath>
+   <clipPath id="diagonal-mask-r">
+      <polygon points="11 30,44 30,44 0,33 0" />
+   </clipPath>
+  </g>
+  <image clip-path="url(#diagonal-mask-l)" xlink:href="https://hydra-media.cursecdn.com/terraria.gamepedia.com/7/70/Crimson_Altar.png?version=c25a837ed238b482edcdf9393962e599"
+  x="0" y="0" height="30" width="44" />
+  <image clip-path="url(#diagonal-mask-r)" xlink:href="https://hydra-media.cursecdn.com/terraria.gamepedia.com/f/f8/Demon_Altar.png?version=f5d200b9e687750cfc1c886c7cd63165"
+  x="0" y="0" height="30" width="44" />
+</svg>

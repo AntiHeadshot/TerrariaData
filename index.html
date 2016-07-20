@@ -164,13 +164,13 @@
                 <span class="description">Drops: </span>
                 <table>
                     <tr ng-if="selected.coins.length" class="drop">
-                            <money ng-model="selected.coins"></money>
+                        <money ng-model="selected.coins"></money>
                     </tr>
                     <tr ng-if="selected.drops.length" class="drop" ng-repeat="drop in selected.drops">
                         <td class="itemWithCount">
                             <nobr>
                                 <img ng-src="{{objects[drop.dropId].img}}" title="{{drop.name}}" ng-click="setSelected(objects[drop.dropId])" />
-                                <span class="ammount" ng-bind="drop.amount"></span>
+                                <div class="ammount" ng-bind="drop.amount"></div>
                             </nobr>
                         </td>
                         <td> (<span ng-bind="drop.rate"></span>)</td>
@@ -185,19 +185,19 @@
                         <td class="itemWithCount">
                             <nobr>
                                 <img ng-src="{{selected.img}}" />
-                                <span class="ammount" ng-bind="reciept.result.ammount"></span>
+                                <div class="ammount" ng-bind="reciept.result.ammount"></div>
                             </nobr>
                         </td>
                         <td>
-                            <object type="image" class="station" data="{{station[reciept.station]}}"/>
+                            <img class="station" src="{{station[reciept.station]}}" />
                         </td>
                         <td>
                             <table>
                                 <tr ng-repeat="ingredient in reciept.ingredients">
                                     <td class="itemWithCount">
                                         <nobr>
-                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])"/>
-                                            <span class="ammount" ng-bind="ingredient.ammount"></span>
+                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])" />
+                                            <div class="ammount" ng-bind="ingredient.ammount"></div>
                                         </nobr>
                                     </td>
                                 </tr>
@@ -207,23 +207,37 @@
                 </table>
             </div>
             <div ng-if="selected.ingredientFor.length">
-                <span class="description">is ingredient for: </span>
+                <span class="description">Ingredient for: </span>
                 <table>
                     <tr class="reciept" ng-repeat="reciept in selected.ingredientFor">
 
                         <td class="itemWithCount">
                             <nobr>
                                 <img ng-src="{{selected.img}}" />
-                                <span class="ammount" ng-bind="reciept.ammount"></span>
+                                <div class="ammount" ng-bind="reciept.ammount"></div>
                             </nobr>
                         </td>
-                        <td><span ng-bind="reciept.reciept.station"></span></td>
+                        <td><img class="station" src="{{station[reciept.reciept.station]}}" /></td>
                         <td class="itemWithCount">
                             <nobr>
                                 <img ng-src="{{objects[reciept.reciept.result.itemID].img}}" title="{{reciept.reciept.result.item}}" ng-click="setSelected(objects[reciept.reciept.result.itemID])" />
-                                <span class="ammount" ng-bind="reciept.reciept.result.ammount"></span>
+                                <div class="ammount" ng-bind="reciept.reciept.result.ammount"></div>
                             </nobr>
                         </td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-if="selected.droppedby.length">
+                <span class="description">Droped By: </span>
+                <table>
+                    <tr ng-if="selected.droppedby.length" class="drop" ng-repeat="drop in selected.droppedby">
+                        <td class="itemWithCount">
+                            <nobr>
+                                <img ng-src="{{objects[drop.dropId].img}}" title="{{drop.name}}" ng-click="setSelected(objects[drop.dropId])" />
+                                <div class="ammount" ng-bind="drop.amount"></div>
+                            </nobr>
+                        </td>
+                        <td> (<span ng-bind="drop.rate"></span>)</td>
                     </tr>
                 </table>
             </div>

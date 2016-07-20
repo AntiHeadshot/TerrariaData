@@ -1,0 +1,14 @@
+﻿<svg width="32" height="16" viewBox="0 0 32 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+   <clipPath id="diagonal-mask-l">
+      <polygon points="0 0,24 0,8 16,0 16" />
+   </clipPath>
+   <clipPath id="diagonal-mask-r">
+      <polygon points="8 16,32 16,32 0,24 0" />
+   </clipPath>
+  </g>
+  <image clip-path="url(#diagonal-mask-l)" xlink:href="https://hydra-media.cursecdn.com/terraria.gamepedia.com/3/3d/Mythril_Anvil.png?version=82bc8dad6af815994c9a623cd55fbf86"
+  x="0" y="0" height="16" width="32" />
+  <image clip-path="url(#diagonal-mask-r)" xlink:href="https://hydra-media.cursecdn.com/terraria.gamepedia.com/d/dc/Orichalcum_Anvil.png?version=5aaa51256142be9400bb55cd544a9fac"
+  x="0" y="0" height="16" width="32" />
+</svg>
