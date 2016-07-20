@@ -38,11 +38,135 @@
                 <span class="description">Tooltip: </span>
                 <span class="text" ng-bind="selected.tooltip" />
             </div>
+            <div ng-if="selected.bufftooltip.length">
+                <span class="description">Bufftooltip: </span>
+                <span class="text" ng-bind="selected.bufftooltip" />
+            </div>
+            <div ng-if="selected.debufftooltip.length">
+                <span class="description">Debufftooltip: </span>
+                <span class="text" ng-bind="selected.debufftooltip" />
+            </div>
 
-            <div ng-if="selected.drops.length">
+            <div ng-if="selected.maxstack.length">
+                <span class="description">Stacksize: </span>
+                <span class="text" ng-bind="selected.maxstack" />
+            </div>
+
+            <div ng-if="selected.bonus.length">
+                <span class="description">Bonus: </span>
+                <span class="text" ng-bind="selected.bonus" />
+            </div>
+            <div ng-if="selected.setbonus.length">
+                <span class="description">Set-Bonus: </span>
+                <span class="text" ng-bind="selected.setbonus" />
+            </div>
+            <div ng-if="selected.defense.length">
+                <span class="description">Defense: </span>
+                <span class="text" ng-bind="selected.defense" />
+            </div>
+            <div ng-if="selected.damage.length">
+                <span class="description">Damage: </span>
+                <span class="text" ng-bind="selected.damage" />
+            </div>
+            <div ng-if="selected.criticalchance.length">
+                <span class="description">Critchance: </span>
+                <span class="text" ng-bind="selected.criticalchance" />
+            </div>
+            <div ng-if="selected.knockback.length">
+                <span class="description">Knockback: </span>
+                <span class="text" ng-bind="selected.knockback" />
+            </div>
+            <div ng-if="selected.usetime.length">
+                <span class="description">Usetime: </span>
+                <span class="text" ng-bind="selected.usetime" />
+            </div>
+            <div ng-if="selected.toolspeed.length">
+                <span class="description">Toolspeed: </span>
+                <span class="text" ng-bind="selected.toolspeed" />
+            </div>
+            <div ng-if="selected.mana.length">
+                <span class="description">Mana: </span>
+                <span class="text" ng-bind="selected.mana" />
+            </div>
+            <div ng-if="selected.effects.length">
+                <span class="description">Effects: </span>
+                <span class="text" ng-bind="selected.effects" />
+            </div>
+            <div ng-if="selected.duration.length">
+                <span class="description">Duration: </span>
+                <span class="text" ng-bind="selected.duration" />
+            </div>
+
+            <div ng-if="selected.healhealth.length">
+                <span class="description">Meahl Health: </span>
+                <span class="text" ng-bind="selected.healhealth" />
+            </div>
+            <div ng-if="selected.healmana.length">
+                <span class="description">Heal Mana: </span>
+                <span class="text" ng-bind="selected.healmana" />
+            </div>
+            <div ng-if="selected.grants.length">
+                <span class="description">Grants: </span>
+                <span class="text" ng-bind="selected.grants" />
+            </div>
+            <div ng-if="selected.buffedby.length">
+                <span class="description">Buffed By: </span>
+                <span class="text" ng-bind="selected.buffedby" />
+            </div>
+            <div ng-if="selected.inflicts.length">
+                <span class="description">Inflicts: </span>
+                <span class="text" ng-bind="selected.inflicts" />
+            </div>
+
+            <div ng-if="selected.tool.length">
+                <span class="description">Tool: </span>
+                <span class="text" ng-bind="selected.tool" />
+            </div>
+            <div ng-if="selected.placeable.length">
+                <span class="description">Placeable: </span>
+                <span class="text" ng-bind="selected.placeable" />
+            </div>
+            <div ng-if="selected.dimensions.length">
+                <span class="description">Dimensions: </span>
+                <span class="text" ng-bind="selected.dimensions" />
+            </div>
+
+            <div ng-if="selected.velocity.length">
+                <span class="description">Velocity: </span>
+                <span class="text" ng-bind="selected.velocity" />
+            </div>
+            <div ng-if="selected.environment.length">
+                <span class="description">Environment: </span>
+                <span class="text" ng-bind="selected.environment" />
+            </div>
+            <div ng-if="selected.aitype.length">
+                <span class="description">AI-Type: </span>
+                <span class="text" ng-bind="selected.aitype" />
+            </div>
+            <div ng-if="selected.maxlife.length">
+                <span class="description">Maxlife: </span>
+                <span class="text" ng-bind="selected.maxlife" />
+            </div>
+            <div ng-if="selected.kbresistance.length">
+                <span class="description">KB-Resistance: </span>
+                <span class="text" ng-bind="selected.kbresistance" />
+            </div>
+            <div ng-if="selected.banner.length">
+                <span class="description">Banner: </span>
+                <span class="text" ng-bind="selected.banner" />
+            </div>
+            <div ng-if="selected.bait.length">
+                <span class="description">Bait Power: </span>
+                <span class="text" ng-bind="selected.bait" />
+            </div>
+
+            <div ng-if="selected.drops.length || selected.coins.length">
                 <span class="description">Drops: </span>
                 <table>
-                    <tr class="drop" ng-repeat="drop in selected.drops">
+                    <tr ng-if="selected.coins.length" class="drop">
+                            <money ng-model="selected.coins"></money>
+                    </tr>
+                    <tr ng-if="selected.drops.length" class="drop" ng-repeat="drop in selected.drops">
                         <td class="itemWithCount">
                             <nobr>
                                 <img ng-src="{{objects[drop.dropId].img}}" title="{{drop.name}}" ng-click="setSelected(objects[drop.dropId])" />
@@ -64,7 +188,7 @@
                                 <tr ng-repeat="ingredient in reciept.ingredients">
                                     <td class="itemWithCount">
                                         <nobr>
-                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])"/>
+                                            <img ng-src="{{objects[ingredient.itemID].img}}" title="{{ingredient.item}}" ng-click="setSelected(objects[ingredient.itemID])" />
                                             <span class="ammount" ng-bind="ingredient.ammount"></span>
                                         </nobr>
                                     </td>
@@ -83,19 +207,18 @@
                             <nobr>
                                 <img ng-src="{{selected.img}}" />
                                 <span class="ammount" ng-bind="reciept.ammount"></span>
-                                </nobr>
+                            </nobr>
                         </td>
                         <td><span ng-bind="reciept.reciept.station"></span></td>
                         <td class="itemWithCount">
                             <nobr>
-                                <img ng-src="{{objects[reciept.reciept.result.itemID].img}}" title="{{reciept.reciept.result.item}}" ng-click="setSelected(objects[reciept.reciept.result.itemID])"/>
+                                <img ng-src="{{objects[reciept.reciept.result.itemID].img}}" title="{{reciept.reciept.result.item}}" ng-click="setSelected(objects[reciept.reciept.result.itemID])" />
                                 <span class="ammount" ng-bind="reciept.reciept.result.ammount"></span>
                             </nobr>
                         </td>
                     </tr>
                 </table>
             </div>
-            {{selected | json}}
         </div>
     </div>
     <div class="rightcontainer">
