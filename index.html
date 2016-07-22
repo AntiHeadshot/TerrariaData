@@ -11,9 +11,13 @@
 <body ng-app="terraria" ng-controller="terrariacontroller">
     <div class="leftcontainer">
         <div ng-if="selected" class="mainobject object">
-            <span class="name" ng-bind="selected.name"></span>
-            <img ng-src="{{selected.img}}" />
-
+            <a class="name" ng-bind="selected.name" href="{{'http://terraria.gamepedia.com/'+selected.name.replace(' ','_')}}" target="_blank"></a>
+            <nobr>
+                <img ng-src="{{selected.img}}" />
+                <div ng-if="selected.banner.length" style="display: inline-block">
+                    <img ng-src="{{selected.banner}}" />
+                </div>
+            </nobr>
             <div ng-if="selected.type">
                 <span class="description">Type: </span>
                 <span class="type" ng-bind="selected.type"></span>
@@ -150,10 +154,6 @@
             <div ng-if="selected.kbresistance.length">
                 <span class="description">KB-Resistance: </span>
                 <span class="text" ng-bind="selected.kbresistance" />
-            </div>
-            <div ng-if="selected.banner.length">
-                <span class="description">Banner: </span>
-                <span class="text" ng-bind="selected.banner" />
             </div>
             <div ng-if="selected.bait.length">
                 <span class="description">Bait Power: </span>
